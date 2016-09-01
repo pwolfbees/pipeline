@@ -1,8 +1,8 @@
 import java.util.Random
 
 def call(String host, String credential, Closure body){
-    String number = getRandom()
-    String workingDir = "$env.WORKSPACE/$number"
+    number = getRandom()
+    workingDir = "$env.WORKSPACE/$number"
 
     dir (workingDir) {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "$credential", passwordVariable: '$password', usernameVariable: '$username']]) {
