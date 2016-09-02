@@ -1,6 +1,6 @@
 import org.apache.commons.lang.RandomStringUtils
 
-def call (host,credentials,Closure body){
+def call (host, credentials, Closure body){
 
     dir ("tmp/${RandomStringUtils.random(9, true, true)}") {
 
@@ -9,7 +9,7 @@ def call (host,credentials,Closure body){
 
             writeFile file: './.tower_cli.cfg',
                     text: "host: $host\nusername: $env.USERNAME \npassword: $env.PASSWORD"
-
+            steps.echo "pathPrefix=${pathPrefix}"
             body()
         }
 
