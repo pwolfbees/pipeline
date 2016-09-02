@@ -1,11 +1,13 @@
 import java.util.Random
 
 def call(String host, String credential, Closure body){
+    host = "foo.com"
+
     number = getRandom()
     workingDir = "$env.WORKSPACE/$number"
 
     dir (workingDir) {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "$credential", passwordVariable: '$password', usernameVariable: '$username']]) {
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "tower-cli", passwordVariable: '$password', usernameVariable: '$username']]) {
             writeFile file: './.tower_cli.cfg', text: "host: $host \n username: $username \n password $password"
         }
 
@@ -19,5 +21,6 @@ def call(String host, String credential, Closure body){
 
 @NonCPS
 def getRandom(){
-    Random rand = new Random(10000).toString()
+    Random rand = new Random(99999999).toString()
+    return rand
 }
