@@ -2,8 +2,7 @@ import org.apache.commons.lang.RandomStringUtils
 
 def call (host,credentials,Closure body){
 
-    //number = getRandom()
-    workingDir = random(9, true, true)
+    workingDir = "tmp/${RandomStringUtils.random(9, true, true)}"
 
     dir (workingDir) {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "$credentials",
@@ -15,11 +14,4 @@ def call (host,credentials,Closure body){
 
         deleteDir()
     }
-
-}
-
-@NonCPS
-def getRandom(){
-    Random rand = new Random(99999999)
-    return "$rand"
 }
