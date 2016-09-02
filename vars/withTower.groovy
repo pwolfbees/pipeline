@@ -3,7 +3,7 @@ import java.util.Random
 def call(String host, String credential, Closure body){
     host = "foo.com"
 
-    number = getRandom()
+    number = "555555"  //getRandom()
     workingDir = "$env.WORKSPACE/$number"
 
     dir (workingDir) {
@@ -21,6 +21,6 @@ def call(String host, String credential, Closure body){
 
 @NonCPS
 def getRandom(){
-    Random rand = new Random(99999999).toString()
-    return rand
+    Random rand = new Random(99999999)
+    return "$rand"
 }
