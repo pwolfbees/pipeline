@@ -10,7 +10,7 @@ def call (Closure body){
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tower-cli',
                           usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
             writeFile file: './.tower_cli.cfg',
-                    text: "host: $host\nusername: $env.USERNAME \npassword $env.PASSWORD"
+                    text: "host: $host\nusername: $env.USERNAME \npassword: $env.PASSWORD"
         }
         body()
     }
