@@ -1,9 +1,9 @@
-import java.util.Random
+import org.apache.commons.lang.RandomStringUtils
 
 def call (host,credentials,Closure body){
 
-    number = getRandom()
-    workingDir = "tmp/$number"
+    //number = getRandom()
+    workingDir = random(9, true, true)
 
     dir (workingDir) {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "$credentials",
