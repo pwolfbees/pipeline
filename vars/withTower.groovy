@@ -7,10 +7,9 @@ def call (Closure body){
     workingDir = "$env.WORKSPACE/$number"
 
     dir (workingDir) {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding',
-                          credentialsId: "tower-cli", passwordVariable:
-                                  'password', usernameVariable: 'username']]) {
-            writeFile file: './.tower_cli.cfg', text: "host: $host \n username: $username \n password $password"
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tower-cli',
+                          usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+            writeFile file: './.tower_cli.cfg', text: "host: $host \n username: $USERNAME \n password $PASSWORD"
         }
 
         body()
