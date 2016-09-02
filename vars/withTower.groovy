@@ -2,7 +2,7 @@ import java.util.Random
 
 def call (host,credentials,Closure body){
 
-    number = "555555"  //getRandom()
+    number = getRandom()
     workingDir = "tmp/$number"
 
     dir (workingDir) {
