@@ -1,7 +1,6 @@
 import java.util.Random
 
 def call (host,credentials,Closure body){
-    //host = "foo.com"
 
     number = "555555"  //getRandom()
     workingDir = "tmp/$number"
@@ -11,13 +10,12 @@ def call (host,credentials,Closure body){
                           usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
             writeFile file: './.tower_cli.cfg',
                     text: "host: $host\nusername: $env.USERNAME \npassword: $env.PASSWORD"
+            body()
         }
-        body()
-    }
 
-    dir(workingDir){
         deleteDir()
     }
+
 }
 
 @NonCPS
