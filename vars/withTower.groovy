@@ -1,10 +1,10 @@
 import java.util.Random
 
-def call (Closure body){
-    host = "foo.com"
+def call (host,Closure body){
+    //host = "foo.com"
 
     number = "555555"  //getRandom()
-    workingDir = "$env.WORKSPACE/$number"
+    workingDir = "tmp/$number"
 
     dir (workingDir) {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tower-cli',
