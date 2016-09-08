@@ -1,11 +1,17 @@
-This library wraps the tower-cli to isolate the {{.tower_cli.cfg}} between builds and users.
+This library wraps the tower-cli to isolate the .tower_cli.cfg between builds and users.
 
 It takes 3 parameters:
 
 host => The Tower host url
-credentials => The credentials id stored in Jenkins for the Tower host
-body = the block or closure of code to run with this configuration.
+credentials => The credentials id stored in Jenkins for the Tower host. Credentials can be global or folder level
+body => the block of code to run with this configuration. This can contain shell steps to call the tower-cli.
 
-A temporary, random directory is created as the local working directory and a ./.tower_cli.cfg file is created based
-input parameters. All commands are run within this isolated directory and the directory is deleted upon completion
-of the block of steps.
+E.g. 
+
+withTower(host:"foo.com", credentials: "tower-cli"){
+  sh 'tower-cli user list'
+}
+
+A ./.tower_cli.cfg file is created based input parameters. After all commands in body are executed the ./.tower_cli.cfg file is deleted. 
+
+Because of the use of Jenkins Credentials the tower-cli config command will not reveal any username or password. These will be masked.
