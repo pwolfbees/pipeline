@@ -1,7 +1,6 @@
 import hudson.model.Result;
 
 def call() {
-    echo "Purge"
     executor = currentBuild.rawBuild.getParent().getBuildByNumber(currentBuild.number-1).getExecutor()
 
     if (executor != null) {
