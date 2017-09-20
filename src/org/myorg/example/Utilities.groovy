@@ -17,7 +17,7 @@ class Utilities implements Serializable {
   }
 
   def echoEnv() {
-    steps.env each {
+    steps.env.getEnvironment() each {
       steps.echo "${it}"
     }
   }
