@@ -1,7 +1,16 @@
 #!/usr/bin/env groovy
 
-def call(String file, String context, String[] destination) {
+def call(String file, String context, String[] destinations) {
 
-    echo "#!/busybox/sh  /kaniko/executor -f $file -c $context -d $destination"
+  if (File.new("/.dockerenv")){
+    command = "#!/busybox/sh  /kaniko/executor -f $file -c $context"
 
+    for (dest in destinations) {
+      command = command + " -d $dest"
+    }
+    echo "$command"
+  }
+  else {
+    echo "Command must be run in a kaniko container"
+  }
 }
