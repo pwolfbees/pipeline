@@ -8,7 +8,7 @@ def call(String file, String context, String[] destinations) {
     for (dest in destinations) {
       command = command + " -d $dest"
     }
-    echo "$command"
+    sh "echo $command"
   }
   else {
     echo "Command must be run in a kaniko container"
