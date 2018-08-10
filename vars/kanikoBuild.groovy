@@ -2,7 +2,7 @@
 
 def call(String file, String context, String[] destinations) {
 
-  if (File.new("/.dockerenv").exists()){
+  if (new File("/.dockerenv").exists()){
     command = "#!/busybox/sh  /kaniko/executor -f $file -c $context"
 
     for (dest in destinations) {
